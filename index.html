@@ -295,101 +295,28 @@
   }
   .error-retry:hover { background: rgba(230,57,70,.08); }
 
-  /* DISTRICT SELECTOR */
-  .district-selector {
-    position: relative; z-index: 1000;
-    max-width: 1100px; margin: 0 auto;
-    padding: 0 32px 40px;
-  }
-  .district-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px; letter-spacing: 4px;
-    text-transform: uppercase; color: #9590a0;
-    margin-bottom: 16px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .district-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-  /* Custom dropdown */
-  .custom-select {
-    position: relative;
-    display: inline-block;
-    min-width: 260px;
-    user-select: none;
-    isolation: isolate;
-  }
-  .custom-select-trigger {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 14px 16px 14px 20px;
-    border: 1px solid var(--border);
-    border-left: 3px solid transparent;
-    background: var(--surface);
-    color: #9590a0;
-    cursor: pointer;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px; letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: border-color .2s, color .2s, background .2s, box-shadow .2s;
-  }
-  .custom-select-trigger:hover,
-  .custom-select.open .custom-select-trigger {
-    border-color: rgba(230,57,70,.6);
-    border-left-color: var(--red);
-    color: var(--text);
-    background: rgba(230,57,70,.05);
-    box-shadow: 0 0 0 1px rgba(230,57,70,.12);
-  }
-  .custom-select-arrow {
-    width: 8px; height: 8px;
-    border-right: 2px solid #9590a0;
-    border-bottom: 2px solid #9590a0;
-    transform: rotate(45deg) translateY(-2px);
-    transition: transform .2s, border-color .2s;
-    flex-shrink: 0;
-  }
-  .custom-select.open .custom-select-arrow {
-    transform: rotate(-135deg) translateY(-2px);
-    border-color: var(--red);
-  }
-  .custom-select-options {
-    display: none;
-    position: absolute;
-    top: calc(100% + 2px);
-    left: 0; right: 0;
-    background: #1a1a20;
-    border: 1px solid rgba(230,57,70,.5);
-    border-top: 2px solid var(--red);
-    z-index: 9999;
-    box-shadow: 0 16px 40px rgba(0,0,0,.9);
-    /* Ensure it floats above everything */
-    isolation: isolate;
-  }
-  .custom-select.open .custom-select-options {
-    display: block;
-    animation: dropDown .15s ease;
-  }
-  @keyframes dropDown { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:none} }
-  .custom-select-option {
-    padding: 13px 20px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px; letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #a8a4b0;
-    cursor: pointer;
-    border-left: 3px solid transparent;
-    transition: background .15s, color .15s, border-color .15s;
-  }
-  .custom-select-option:not(:last-child) {
-    border-bottom: 1px solid var(--border);
-  }
-  .custom-select-option:hover {
-    background: rgba(230,57,70,.08);
-    color: var(--text);
-    border-left-color: var(--red);
-  }
+  
+    /* ── District Dropdown ── */
+.district-dropdown{position:relative;z-index:200;}
+.dd-trigger{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border);padding:6px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:color .2s,border-color .2s;}
+.dd-trigger:hover{color:var(--text);border-color:#5e5a6e;}
+.dd-trigger.open{color:var(--text);border-color:var(--red);}
+.dd-trigger .dd-arrow{font-size:8px;transition:transform .25s;display:inline-block;}
+.dd-trigger.open .dd-arrow{transform:rotate(180deg);}
+.dd-trigger .dd-current{color:var(--red);}
+.dd-menu{position:absolute;top:calc(100% + 6px);right:0;min-width:220px;background:rgba(10,10,12,.98);border:1px solid var(--border);backdrop-filter:blur(16px);display:none;flex-direction:column;max-height:380px;overflow-y:auto;animation:ddIn .18s ease both;}
+.dd-menu.open{display:flex;}
+@keyframes ddIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.dd-menu::-webkit-scrollbar{width:4px;}
+.dd-menu::-webkit-scrollbar-track{background:transparent;}
+.dd-menu::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.dd-section-title{font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#5e5a6e;padding:8px 14px 4px;border-bottom:1px solid rgba(46,46,56,.5);}
+.dd-item{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 14px;text-decoration:none;display:flex;align-items:center;justify-content:space-between;transition:background .12s,color .12s;border-left:2px solid transparent;}
+.dd-item:hover{background:var(--surface2);color:var(--text);}
+.dd-item.active{color:var(--red);border-left-color:var(--red);background:rgba(230,57,70,.05);}
+.dd-item .dd-tag{font-size:7px;letter-spacing:.5px;padding:1px 5px;border:1px solid var(--border);border-radius:2px;color:#5e5a6e;}
+.dd-item.active .dd-tag{border-color:rgba(230,57,70,.3);color:var(--red);}
+  
 
   @media(max-width:750px){
     header { padding:0 16px; }
@@ -560,10 +487,9 @@
     <div class="logo-tri"></div>
     <div class="logo-text"><span>Incendios</span>PT</div>
   </div>
-  <div class="live">
-    <span id="live-ts">A CARREGAR...</span><br>
-    ICNF / IPMA
-  </div>
+  <button class="dd-trigger" id="dd-trigger">
+    <span>Distrito:</span><span class="dd-current" id="dd-current">—</span><span class="dd-arrow">&#9660;</span>
+  </button>
 </header>
 
 <section class="hero">
